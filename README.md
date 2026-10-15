@@ -98,28 +98,6 @@ This is the **intended end-to-end architecture**. Several components have been t
 - MSYS2 CLANG64 for the separate GPU/native components where needed
 - Zydis and a separately built backend DLL for applicable developer tests
 
-### Developer workflow
-
-```powershell
-git clone https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc.git
-cd uncharted_nathan_drake_collection_pc
-
-# After source and CMakePresets.json have been published:
-cmake --list-presets=all
-
-# Replace placeholders with actual preset names listed above:
-cmake --preset <configure-preset>
-cmake --build --preset <build-preset>
-ctest --preset <test-preset> --output-on-failure
-```
-
-Backend-related tests may require environment variables pointing to **locally built dependencies**:
-
-```powershell
-$env:UNCHARTED_BBGPU_BACKEND_DLL = 'C:\path\to\libbb-real-liverpool-backend.dll'
-$env:UNCHARTED_ZYDIS_DLL = 'C:\path\to\libZydis.dll'
-```
-
 Exact supported build and test commands will be documented when the source is published.
 
 ## Roadmap
