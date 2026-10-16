@@ -1,146 +1,182 @@
 # Uncharted: The Nathan Drake Collection — Native PC Project
 
 <p align="center">
-  <strong>An experimental Windows-native compatibility project for the original PS4 versions of Uncharted 1, 2, and 3.</strong>
+  <strong>An experimental native Windows compatibility project for Uncharted 1, Uncharted 2, and Uncharted 3.</strong>
 </p>
 
 <p align="center">
-  <img alt="Work in progress" src="https://img.shields.io/badge/status-work%20in%20progress-orange">
-  <img alt="Windows x64" src="https://img.shields.io/badge/platform-Windows%20x64-blue">
-  <img alt="Vulkan" src="https://img.shields.io/badge/graphics-Vulkan-red">
-  <img alt="Native gameplay not verified" src="https://img.shields.io/badge/native%20gameplay-not%20yet%20verified-lightgrey">
+  <img alt="Work in progress" src="https://img.shields.io/badge/status-experimental%20development-orange">
+  <img alt="Platform" src="https://img.shields.io/badge/platform-Windows%20x64-blue">
+  <img alt="Graphics API" src="https://img.shields.io/badge/graphics-Vulkan-red">
+  <img alt="Early development" src="https://img.shields.io/badge/release-early%20experimental%20build-yellow">
 </p>
 
-> [!IMPORTANT]
-> **This project is in active development and is not currently a playable PC release.** Original Uncharted gameplay has **not yet been verified in this independent Windows runtime**. No ready-to-play build or copyrighted game content is provided.
+> [!WARNING]
+> **This is an experimental, unofficial development project. Compatibility, stability, performance, and gameplay are still under development.** Expect crashes, missing textures, rendering defects, incomplete features, and other issues. This project is not affiliated with Sony Interactive Entertainment, Naughty Dog, or PlayStation.
 
-## About
+## About the Project
 
-**Uncharted: The Nathan Drake Collection — Native PC Project** is an independent research and development effort to run the original PlayStation 4 editions of:
+**Uncharted: The Nathan Drake Collection — Native PC Project** is an independent research and development effort focused on bringing the original PlayStation 4 versions of the following games to Windows through a native compatibility runtime:
 
-- **Uncharted: Drake's Fortune Remastered**
-- **Uncharted 2: Among Thieves Remastered**
-- **Uncharted 3: Drake's Deception Remastered**
+- **Uncharted: Drake's Fortune Remastered** — Uncharted 1
+- **Uncharted 2: Among Thieves Remastered** — Uncharted 2
+- **Uncharted 3: Drake's Deception Remastered** — Uncharted 3
 
-The aim is to execute compatible original PS4 **x86-64 game code** on Windows, translate graphics commands through **Vulkan**, and implement the required PS4 operating-system services for genuine gameplay.
+The long-term objective is to execute the original games through a Windows-native runtime, with appropriate handling of PS4 executable code, system services, memory, graphics, input, and other platform requirements.
 
-This is **not** a remake, an official PC port, or a package of PS4 game files.
+The goal is **not to run the games through shadPS4 as the runtime**. Instead, the project aims to develop its own Windows execution and compatibility layers. The final architecture and compatibility requirements remain under active development.
 
-**Maintainer:** [ManoharPadul](https://github.com/ManoharPadul)  
-**Repository:** [uncharted_nathan_drake_collection_pc](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc)
+This is a technical compatibility project, not an official PC port or a remake.
 
-## Development status
+- **Maintainer:** [ManoharPadul](https://github.com/ManoharPadul)
+- **Repository:** [uncharted_nathan_drake_collection_pc](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc)
+- **Issues and bug reports:** [GitHub Issues](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/issues)
 
-| Component / milestone | Current state |
+## Current Development Status
+
+The project is experimental. Progress may differ between game versions and individual builds.
+
+| Game / Component | Status |
 |---|---|
-| PS4 SELF/ELF inspection, memory mapping | Experimental implementation |
-| Imports, NIDs, relocations and module linking | Link planning implemented; numerous bindings provisional |
-| Guest stack, threading, TLS and Windows ↔ PS4 ABI | Synthetic tests implemented |
-| PS4 system-library compatibility (HLE) | Partial |
-| Liverpool GPU / Vulkan rendering backend | Synthetic compute, draw and presentation tests |
-| Original Collection launcher execution on Windows | **Not yet demonstrated** |
-| U1 native gameplay | **Not yet demonstrated** |
-| U2 native gameplay | **Not yet demonstrated** |
-| U3 native gameplay | **Not yet demonstrated** |
+| Uncharted 1 | Experimental gameplay progress; full compatibility and stability require further verification |
+| Uncharted 2 | Experimental; crashes and gameplay/rendering issues remain |
+| Uncharted 3 | Experimental; gameplay/rendering issues remain |
+| Texture rendering | Ongoing investigation and fixes |
+| Character and environment collision | Requires further testing |
+| Native runtime and PS4 compatibility services | Under active development |
+| Vulkan graphics backend | Under development and testing |
+| Long-term stability and performance | Not yet established across all three games |
 
-The last reported internal checkpoint (Phase 183) had link-planning targets for **433/433 U1 imports**, but **161 required imports still lacked verified execution-ready bindings**. Planned relocations and passing synthetic tests **do not prove the game boots or runs**.
+A game reaching a particular scene or showing gameplay does not establish that the entire game is playable from beginning to end. Compatibility must be verified through repeatable testing.
 
-Some GPU-dependent tests require a separately configured backend and may be skipped when it is absent. Development measurements are subject to change.
+## Project Goals
 
-## Project goals
+The primary objective is to establish a reliable native Windows execution path, starting with Uncharted 1 and then improving compatibility with Uncharted 2 and Uncharted 3.
 
-The first priority is to make **Uncharted 1** run its original executable and reach stable, playable Windows gameplay. After that, extend the same runtime to **Uncharted 2** and **Uncharted 3**.
+Planned development areas include:
 
-Planned capabilities include:
+- Original game executable loading and guest-code execution.
+- PS4 memory management, module loading, relocations, threading, and TLS.
+- PS4 system-library compatibility and required system services.
+- Graphics command handling and Vulkan rendering.
+- Correct textures, shaders, lighting, models, and frame presentation.
+- Controller input, audio, cinematics, and filesystem access.
+- Save and reload functionality, checkpoints, and stable game progression.
+- Crash diagnostics, reproducible tests, and performance profiling.
 
-- Original executable and game-asset loading without changing source files.
-- Correct guest memory, relocations, startup, TLS, threads and HLE services.
-- Original GNM/Liverpool graphics commands rendered through Vulkan.
-- Proper shaders, textures, lighting, models and frame presentation.
-- Controller input, audio, cinematic playback and game filesystem access.
-- Checkpoints, save/reload and reproducibly stable gameplay.
+**Native compatibility is not established by a successful build, a synthetic graphics test, or a menu alone.** The objective is real gameplay with correct rendering, working controls, and repeatable stability.
 
-**Playable** means real game-generated visuals and responsive gameplay—not a synthetic render, a fake menu or a successful link audit.
+## Architecture
 
-## Architecture (in development)
+The intended architecture is built around a Windows-native runtime:
 
 ```text
-Original PS4 game files (user-supplied, read-only)
-                    |
-             SELF / ELF loader
-                    |
-       Guest memory + module linker
-                    |
-        PS4 x86-64 guest execution
-                    |
-     PS4 system-service / HLE layer
-                    |
-     GNM / Liverpool command handling
-                    |
-           Vulkan GPU backend
-                    |
-      Windows display, input and audio
+Original PS4 game files
+(user-supplied, read-only)
+           |
+           v
+    SELF / ELF loader
+           |
+           v
+ Guest memory and module linker
+           |
+           v
+ PS4 x86-64 guest execution
+           |
+           v
+ PS4 system-service compatibility
+           |
+           v
+ GNM / Liverpool graphics handling
+           |
+           v
+      Vulkan backend
+           |
+           v
+ Windows display, input and audio
 ```
 
-This is the **intended end-to-end architecture**. Several components have been tested independently, but original-game execution is not yet demonstrated.
+This diagram represents the intended architecture, not a claim that every component is complete. The loader, compatibility services, guest execution, and graphics pipeline must work together for reliable gameplay.
 
-## Building from source
+## Testing and Bug Reports
 
-> [!NOTE]
-> **The repository is being set up.** Source files, build presets, dependencies and release binaries may not yet be published. The following commands are for developers **after the corresponding project files are uploaded**; they will not produce a playable game from an empty repository.
+Community testing can help identify regressions and prioritize fixes.
 
-### Development requirements
+When reporting an issue, please provide:
 
-- Windows 10/11, 64-bit
-- Visual Studio / MSVC C++ build tools
-- CMake and CTest
-- Vulkan SDK and current Vulkan-capable GPU driver
-- MSYS2 CLANG64 for the separate GPU/native components where needed
-- Zydis and a separately built backend DLL for applicable developer tests
+- Windows version.
+- CPU and GPU.
+- GPU driver version.
+- Project build or commit.
+- Which game you tested: U1, U2, or U3.
+- The scene or gameplay section where the issue occurred.
+- Steps to reproduce the problem.
+- Relevant logs, including `last_run.log` when available.
+- Whether the issue occurs consistently or intermittently.
 
-Exact supported build and test commands will be documented when the source is published.
+If a particular build includes configuration instructions, follow those instructions before testing. Avoid graphics upscaling options or other settings that are specifically documented as incompatible with that build.
 
-## Roadmap
+Please distinguish issues observed in this project from issues observed in a reference emulator. This helps keep bug reports relevant and reproducible.
 
-- [x] Initial independent Windows runtime and import/linker research
-- [x] Synthetic guest stack, ABI, memory/TLS and GPU test infrastructure
-- [ ] Verify required module lifecycle and startup-critical PS4 services
-- [ ] Resolve original-game dependency, import and TLS execution readiness
-- [ ] Execute the first original Collection/U1 instruction on Windows
-- [ ] Reach the original Collection selector and U1 menu
-- [ ] Render real U1 gameplay correctly through Vulkan
-- [ ] Enable U1 input, audio, cinematics, checkpoints and saves
-- [ ] Demonstrate stable, repeatable playable U1 gameplay
-- [ ] Achieve equivalent U2 gameplay compatibility
-- [ ] Achieve equivalent U3 gameplay compatibility
-- [ ] Publish a documented developer build and compatibility guide
+Do not upload copyrighted game files, private keys, or personal information to public issues.
 
-The roadmap is aspirational, with no guaranteed release date.
+## Development Roadmap
 
-## Game files and legal notice
+- [x] Begin independent Windows-native runtime research.
+- [x] Develop initial guest-runtime and compatibility test infrastructure.
+- [ ] Improve executable loading and module initialization.
+- [ ] Complete startup-critical PS4 service compatibility.
+- [ ] Verify required imports, relocations, and TLS behavior.
+- [ ] Establish reliable original-game execution.
+- [ ] Improve Uncharted 1 gameplay compatibility.
+- [ ] Fix remaining rendering, texture, and collision issues.
+- [ ] Improve Uncharted 2 compatibility and stability.
+- [ ] Improve Uncharted 3 compatibility and stability.
+- [ ] Improve input, audio, cinematics, and save support.
+- [ ] Publish reproducible developer builds and compatibility documentation.
 
-**This repository does not provide PS4 game executables, assets, firmware, encryption keys or proprietary Sony/Naughty Dog content.** Users are responsible for obtaining and using their own game files lawfully.
+Roadmap items describe development goals and may change as new technical issues are discovered. No release date is guaranteed.
 
-This is an independent technical project **not affiliated with, endorsed by or sponsored by Sony Interactive Entertainment, Naughty Dog or PlayStation**. *Uncharted*, *The Nathan Drake Collection*, *PlayStation* and related names belong to their respective rights holders.
+## Building from Source
 
-## Credits and references
+Build instructions depend on the source files, dependencies, build configuration, and backend components available in the repository.
 
-The development effort studies and, where technically and legally appropriate, adapts concepts from:
+Potential development requirements include:
 
-- [shadPS4](https://github.com/shadps4-emu/shadPS4) — PS4 compatibility, system libraries and Vulkan renderer.
-- [Supermedo / bloodborne_pc](https://github.com/Supermedo/bloodborne_pc) — Windows-native PS4 execution and Vulkan integration reference.
-- [deadinside28 / bloodborne_pc](https://github.com/deadinside28/bloodborne_pc) — native Bloodborne port foundation.
+- Windows 10 or Windows 11, 64-bit.
+- Visual Studio and MSVC C++ build tools.
+- CMake and CTest.
+- Vulkan SDK and a compatible GPU driver.
+- Additional libraries and development tools required by the current implementation.
 
-Thanks to these developers and the wider compatibility and preservation community.
+**Check the repository for the actual build files and documented commands before attempting to compile.** A successful compilation does not guarantee that any of the three games will boot or run.
 
-**Licensing:** Third-party code retains its own licensing and attribution obligations. A project-wide license has not yet been published in this repository. Code derived from GPL-licensed sources must comply with the applicable GPL license terms; consult the eventual `LICENSE` and third-party notices before redistributing source or binaries.
+## Game Files and Legal Notice
 
-## Contributing and reporting issues
+This project does not intend to distribute proprietary game assets, PS4 game executables, firmware, encryption keys, or other copyrighted Sony or Naughty Dog content.
 
-Reproducible reports and contributions are welcome through [GitHub Issues](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/issues).
+Users are responsible for obtaining and using their own game files in accordance with applicable law.
 
-Please include your Windows version, CPU/GPU, driver, build/commit, relevant logs and reproduction steps. Specify whether an issue was observed in **this independent native runtime** or a reference emulator. Do not attach copyrighted game data, private keys or personal information.
+This is an independent, unofficial project and is not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment, Naughty Dog, or PlayStation. *Uncharted*, *The Nathan Drake Collection*, *PlayStation*, and related names are trademarks or property of their respective owners.
 
----
+## Credits and References
 
-<p align="center"><strong>Goal: Bring the original Nathan Drake Collection to Windows through a correct, reproducible native compatibility runtime.</strong></p>
+The project draws on public technical research and compatibility work from the wider PS4 emulation and preservation community, including:
+
+- [shadPS4](https://github.com/shadps4-emu/shadPS4) — PS4 compatibility research and graphics implementation reference.
+- [Supermedo / bloodborne_pc](https://github.com/Supermedo/bloodborne_pc) — reference for native Windows execution and graphics integration.
+- [deadinside28 / bloodborne_pc](https://github.com/deadinside28/bloodborne_pc) — related native-port development reference.
+
+References are provided for attribution and technical context. Their inclusion does not imply that this project is endorsed by those developers or that any particular code is included in this repository.
+
+Third-party code retains its own license requirements. Any code reused or adapted must comply with the applicable license and attribution obligations. Check the repository's license and third-party notices before redistributing source code or binaries.
+
+## Contributing
+
+Bug reports, reproducible test results, technical discussion, and code contributions are welcome through [GitHub Issues](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/issues).
+
+The long-term goal is to build a reliable, reproducible Windows-native compatibility runtime for the original Nathan Drake Collection, progressing toward correct and stable gameplay across all three games.
+
+<p align="center">
+  <strong>Independent development. Experimental compatibility. One step closer to Nathan Drake on PC.</strong>
+</p>
