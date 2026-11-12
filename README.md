@@ -91,10 +91,15 @@ caches; it may also contain save data. Updates should preserve user data.
 
 ## Known issues
 
-- **U3 FPS and frame pacing:** the latest supplied log ranges from about 63 to
-  115 FPS at a 120 Hz vblank, with heavier samples around 63–71 FPS. DispatchDirect
-  and host-copy waits remain prominent. That log has no readback-batch diagnostic,
-  so it does not measure the v1.0.0 batching change.
+- **U3 FPS and frame pacing:** the latest supplied capture ran from
+  `dist/uncharted-windows` with the same runtime hash as v1.0.0, so the batched
+  readback path was active. It reports 56.5–120 FPS across 56 windows; the last
+  heavy windows were about 62.9–70.7 FPS. Stage B was busy about 89–95%, and
+  DispatchDirect accounted for about 30–45% of stage-A wait cycles, which points
+  to CPU-side recorder pressure. The first three batch diagnostics each had one
+  range, so this capture does not demonstrate multiple ranges combined or a
+  before/after gain. Detailed frame instrumentation was enabled and can affect
+  timing; compare with it off.
 - **U2 FPS:** earlier logs ranged from about 97 to 119 FPS depending on scene.
   Exact synchronous GPU results can cost speed in busy scenes; U2 train/submesh
   assertions are not confirmed fixed.
