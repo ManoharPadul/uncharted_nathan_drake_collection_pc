@@ -1,155 +1,135 @@
 # Uncharted: The Nathan Drake Collection for Windows
 
-An unofficial, experimental Windows compatibility build for the PS4 versions of
+An unofficial experimental Windows compatibility build for the PS4 versions of
 **Uncharted 1, Uncharted 2 and Uncharted 3**, maintained by **Manohar Padul (Mindro)**.
 
-[Downloads](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/releases)
+[Download v1.0.0](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/releases/tag/1.0.0)
+· [All releases](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/releases)
 · [Report a bug](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/issues)
 
-> **Development build — version 0.0.1.** Gameplay has been reached, but compatibility,
-> rendering, saves, performance and stability are not verified from beginning to end.
-> Expect crashes and visual defects. No game files are included.
+The release also includes the matching source snapshot,
+**uncharted-native-source-1.0.0.zip**.
+
+> **v1.0.0 remains experimental.** Gameplay starts, but full-game compatibility,
+> visuals, saves, performance and long-session stability have not been verified.
+> Expect crashes and rendering defects. No game files are included.
 
 ## How it works
 
-The original PS4 x86-64 game code executes through a Windows-native compatibility
-runtime. PS4 system services are implemented on the host, and graphics commands
-are translated to Vulkan.
+The original PS4 x86-64 game code runs through a Windows-native compatibility
+runtime. System services are implemented on the host and graphics commands are
+translated to Vulkan. The build includes adapted shadPS4 renderer/runtime code and
+work from SuperMedo's Uncharted PC port and other credited projects. It is not an
+official PC port, remake or clean-room implementation.
 
-The build does not require launching the standalone shadPS4 application. It **does
-include adapted shadPS4 graphics/compatibility code**, along with work from
-SuperMedo's Uncharted port and other credited projects. It is not a clean-room
-implementation, an official source-code port, or a remake.
+## Included in v1.0.0
 
-## Included in 0.0.1
+### Launcher and game management
 
-- Custom Uncharted launcher, game-folder selection, graphics/input settings and shortcuts.
-- Save, load and overwrite-selection interface with game-dump artwork support.
-- Keyboard, mouse and controller support.
-- Vulkan rendering, FSR 1 presentation scaling, TAA and FSR 3.1 options.
-- U2/U3 depth-of-field removal and save/cinematic buffer-handoff changes.
-- U3 exposure/brightness changes and pub/bathroom material/crash guards.
-- Resource/descriptor validation, DMA ordering and deferred sampler-release fixes.
-- Shader-cache ownership and resource-table recovery corrections.
-- MP3 decoding through FFmpeg alongside ATRAC9 decoding through LibAtrac9.
-- Broader EOP frame-reuse wait matching and improved crash/build identification.
+- Custom Uncharted interface with Play, Game, Graphics, Performance, Controls,
+  Fixes, Trophies, Advanced and Log pages.
+- Shared collection folder or separate game folders for U1, U2 and U3.
+- Game-dump artwork, save/load/overwrite selection, trophy lists and earned-trophy
+  notifications.
+- Keyboard, mouse and controller support, remapping, vibration, player name,
+  language, cheats and shortcuts.
 
-These are implemented changes, **not a claim that every affected scene is fixed**.
-In particular, the pub guards and save/cinematic changes do not establish that all
-U3 crashes or all black weapon textures are resolved.
+### Rendering and game-specific options
 
-## Game files
+- Vulkan renderer with 60/120 FPS targets, presentation options, FSR 1 scaling,
+  TAA and temporal-upscaler settings.
+- U2/U3 depth-of-field control and U3 exposure/brightness corrections.
+- U2 exact GPU-result and mesh-raycaster options, plus targeted U2 convoy handling.
+- Small GPU-result readbacks for weapon/material and brightness issues.
+- U3 character-raycaster copyback with a targeted end-of-pipe gate. Small result
+  readbacks are batched by arena to reduce repeated queue submissions.
+- Shader/resource validation, cache-ownership and transition-handling corrections,
+  improved crash reporting and game-build identification.
+- MP3 decoding through FFmpeg and ATRAC9 support; AAC is not implemented.
+- FSR4 shader assets are included. FSR4 stability is still under verification:
+  the latest U3 log reported FSR 3.1 active, and FSR4 shaking has not been confirmed
+  resolved.
 
-Supply your own decrypted game dump. Do not download or upload game files through
-this repository.
+These are included code paths and options, **not a guarantee that every visual issue
+is fixed in every chapter**.
 
-Collection layouts normally contain:
+## Download and install
 
-```text
-Game folder/
-├── eboot.bin
-├── big2-ps4_Shipping.elf
-├── big3-ps4_Shipping.elf
-├── sce_sys/
-├── u1data/
-├── u2data/
-└── u3data/
-```
+1. Download **uncharted-windows.zip** from the [v1.0.0 release](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/releases/tag/1.0.0).
+2. Extract the full archive to a writable folder. Do not run the application from
+   inside the ZIP.
+3. Open **Uncharted.exe**, choose the game dump on the Game page, and select U1,
+   U2 or U3.
+4. Keep the launcher, bin, _internal and other bundled folders together.
 
-Standalone releases use their own `eboot.bin` and game data. Target layouts include
-Collection IDs CUSA02320/CUSA02343/CUSA02344 and standalone IDs
-CUSA03280/CUSA03281/CUSA03282. Compatibility depends on the exact executable,
-update and matching data files; a recognized title ID is not certification.
+Supply your own decrypted game files. Collection layouts normally include
+eboot.bin, big2-ps4_Shipping.elf, big3-ps4_Shipping.elf, sce_sys and the game data
+folders. Standalone builds use their own executable and data. A recognized title ID
+does not certify compatibility with every update or dump.
 
-## Requirements and installation
+## Requirements
 
 - Windows 10 or Windows 11, 64-bit, on an x86-64 CPU.
-- A Vulkan 1.3-capable GPU and compatible graphics driver.
-- Enough available RAM, page-file capacity and VRAM for the selected game/settings.
-  Reliable operation on 4 GB VRAM or 8 GB RAM systems has **not** been established.
+- Vulkan 1.3-capable GPU with a current graphics driver.
+- Enough system memory, page-file capacity and VRAM for the game and selected
+  settings. Stable operation on low-memory systems is not established.
 
-1. Download `uncharted-windows.zip` from [Releases](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/releases).
-2. Extract the entire archive to a writable folder. Do not run it inside the ZIP.
-3. Open `Uncharted.exe` and select your game folder on the Game page.
-4. Choose the matching game and start it from the launcher.
-
-Keep the launcher, `bin`, `_internal` and other bundled folders together. The
-packaged application includes Python and its runtime dependencies; a separate
-Python installation is not required to play.
-
-Start testing with 60 FPS selected. This is a target, not a guaranteed result.
-Higher frame-rate limits, frame generation and multithreaded paths need additional
-testing. A larger output window is not proof of native 1440p/4K guest rendering.
-
-### Optional graphics support
-
-- **DLSS/DLSS Frame Generation:** unavailable in this package; the required bridge
-  and NVIDIA runtime files were not built/bundled.
-- **FSR 4:** the current package does not include the required external model/shader
-  assets. Its presence in a settings list does not establish working support.
-- Upscaling/frame-generation options depend on the actual build, assets and GPU.
+Start with the 60 FPS target. Higher targets and frame generation are experimental;
+60, 90 or 120 FPS is not guaranteed across scenes or hardware. Lowering the window
+size does not necessarily lower the game's internal render resolution.
 
 ## Saves, settings and logs
 
-- Default saves/cache location: `user/` beside the launcher, unless another saves
-  folder is selected.
-- Latest run log: `user/last_run.log` in the active user-data directory.
-- Runtime/input settings: `uncharted.ini` and `input.ini`.
-- Prepared executable data: `out/`.
+- Saves and shader caches are kept in the selected user-data folder, normally
+  user/ beside the launcher.
+- The latest run log is user/last_run.log in that active folder.
+- Runtime and input settings are stored in uncharted.ini and input.ini.
+- Prepared game data is stored in out/.
 
-Back up saves before changing builds. Do not delete the whole `user` folder to
-clear shaders: it can also contain save data. Updates should preserve user data.
-Save-selection persistence and in-game behavior still need broader testing.
+Back up saves before updating. Do not delete the entire user folder to clear shader
+caches; it may also contain save data. Updates should preserve user data.
 
 ## Known issues
 
-- U1/U2 streaming/submesh crashes, including `iSubMesh < m_numSubMeshInstances`,
-  are **not confirmed resolved**.
-- Some builds/dumps halt in `GetCsShaderByNameId` with `No CS shader with name`.
-  This is not automatically a Vulkan shader-cache problem.
-- U3 pub/gameplay crashes and black or incorrect materials remain under investigation.
-- Floating/clipping characters, stretching, Sully's clothing flicker and cloth/hair
-  simulation defects are not confirmed fixed across all games/scenes.
-- FPS drops, stutter, memory pressure and long-session stability remain open.
-- MP3 fixture tests passed; broader game-audio compatibility is still being tested.
-  AAC decoding is not implemented in this runtime.
+- **U3 FPS and frame pacing:** the latest supplied log ranges from about 63 to
+  115 FPS at a 120 Hz vblank, with heavier samples around 63–71 FPS. DispatchDirect
+  and host-copy waits remain prominent. That log has no readback-batch diagnostic,
+  so it does not measure the v1.0.0 batching change.
+- **U2 FPS:** earlier logs ranged from about 97 to 119 FPS depending on scene.
+  Exact synchronous GPU results can cost speed in busy scenes; U2 train/submesh
+  assertions are not confirmed fixed.
+- **Characters:** U3 raycaster synchronization is enabled by default, but sinking,
+  floating and clipping still need scene-by-scene gameplay verification.
+- **Weapons and brightness:** small-result/material fixes are included, but black
+  weapons and all U3 brightness transitions are not confirmed fixed in every scene.
+- **FSR4:** assets are bundled, but temporal shaking and the selected runtime path
+  still need verification. Do not assume the option is stable.
+- U1/U2 streaming crashes, U3 pub/gameplay crashes, cloth/hair defects, memory
+  pressure and long-session stability remain under investigation.
+- DLSS/DLSS Frame Generation and Intel XeSS are not available in this package.
 
-A successful build, a passing focused test or reaching a menu does not prove
-full-game compatibility. No stable 60/120 FPS or zero-performance-loss guarantee
-is made.
+A successful build, menu launch or focused test does not prove a complete
+playthrough or stable frame rate.
 
-## Reporting a problem
+## Report a problem
 
-Open an [issue](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/issues) with:
+Open an [issue](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/issues)
+with the game, title ID, game update, chapter/save point, reproduction steps,
+hardware, graphics settings and the complete log from that build. Keep the startup
+executable/hash lines. Do not attach game binaries, keys, firmware or copyrighted
+game assets.
 
-- Release/build used, U1/U2/U3, title ID and game update version.
-- CPU, GPU, VRAM, RAM, Windows and graphics-driver versions.
-- Chapter/save location, steps to reproduce, and whether death/reload is involved.
-- Selected resolution, FPS limit, upscaler and frame-generation settings.
-- The **complete new log from that build**, plus screenshots/video when useful.
+## Credits and notices
 
-New logs identify the selected executable, APP_VER and SHA-256. Keep those lines
-when reporting bugs. Redact personal paths if needed; never attach game binaries,
-keys, system modules or copyrighted assets to public issues.
+Custom launcher and integration by **Manohar Padul (Mindro)**. This project adapts
+work from [SuperMedo's Uncharted PC port](https://github.com/Supermedo/uncharted_pc),
+[shadPS4](https://github.com/shadps4-emu/shadPS4),
+[bc160201983's Uncharted port](https://github.com/bc160201983/Uncharted-The-Nathan-Drake-Collection-PC-port),
+and the contributors and dependencies credited in the source and release notices.
+Third-party components retain their own licenses. The runtime includes
+GPL-2.0-or-later code; preserve applicable notices and corresponding source when
+redistributing it. The matching source snapshot is attached to the v1.0.0 release.
 
-## Credits, source and licenses
-
-Custom integration, launcher and branding: **Manohar Padul (Mindro)**.
-
-This build uses or adapts work from:
-
-- [shadPS4](https://github.com/shadps4-emu/shadPS4)
-- [deadinside28 — bloodborne_pc](https://github.com/deadinside28/bloodborne_pc)
-  credited by the base port for video-decoder/DLSS integration work.
-- FFmpeg, LibAtrac9, SDL3, Dear ImGui, FidelityFX/FSR and the other dependencies
-  identified by their source and bundled notices.
-
-The runtime contains GPL-2.0-or-later code; dependencies retain their own licenses.
-Distributions must retain applicable notices and provide corresponding source as
-required by those licenses. Upstream links are not a substitute for the matching
-source of a modified binary. This documentation repository is not, by itself,
-the complete runtime source tree.
-
-Uncharted and related names belong to their respective owners. This project is
-not affiliated with or endorsed by Sony Interactive Entertainment, Naughty Dog,
+Uncharted and related names belong to their respective owners. This project is not
+affiliated with or endorsed by Sony Interactive Entertainment, Naughty Dog,
 Bluepoint Games or PlayStation.
