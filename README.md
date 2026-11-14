@@ -3,14 +3,14 @@
 An unofficial experimental Windows compatibility build for the PS4 versions of
 **Uncharted 1, Uncharted 2 and Uncharted 3**, maintained by **Manohar Padul (Mindro)**.
 
-[Download v1.0.0](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/releases/tag/1.0.0)
+[Download v1.0.1](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/releases/tag/1.0.1)
 · [All releases](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/releases)
 · [Report a bug](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/issues)
 
 The release also includes the matching source snapshot,
-**uncharted-native-source-1.0.0.zip**.
+**uncharted-native-source-1.0.1.zip**.
 
-> **v1.0.0 remains experimental.** Gameplay starts, but full-game compatibility,
+> **v1.0.1 remains experimental.** Gameplay starts, but full-game compatibility,
 > visuals, saves, performance and long-session stability have not been verified.
 > Expect crashes and rendering defects. No game files are included.
 
@@ -22,7 +22,7 @@ translated to Vulkan. The build includes adapted shadPS4 renderer/runtime code a
 work from SuperMedo's Uncharted PC port and other credited projects. It is not an
 official PC port, remake or clean-room implementation.
 
-## Included in v1.0.0
+## Included in v1.0.1
 
 ### Launcher and game management
 
@@ -37,7 +37,13 @@ official PC port, remake or clean-room implementation.
 ### Rendering and game-specific options
 
 - Vulkan renderer with 60/120 FPS targets, presentation options, FSR 1 scaling,
-  TAA and temporal-upscaler settings.
+  TAA, AMD FSR 3.1/4, NVIDIA DLSS Super Resolution and Intel XeSS options.
+- FSR 3 and NVIDIA DLSS Frame Generation paths. The package includes NVIDIA DLSS
+  310.9.1.0 Super Resolution and Frame Generation runtimes, plus the Intel XeSS
+  runtime. The XeSS DLL reports file version 2.0.2.68. Availability depends on the
+  GPU, driver and selected mode.
+- Temporal-upscaler sharpening and jitter controls, including separate DLSS/XeSS
+  jitter-sign handling and the FSR 4 jitter-sign option.
 - U2/U3 depth-of-field control and U3 exposure/brightness corrections.
 - U2 exact GPU-result and mesh-raycaster options, plus targeted U2 convoy handling.
 - Small GPU-result readbacks for weapon/material and brightness issues.
@@ -55,7 +61,7 @@ is fixed in every chapter**.
 
 ## Download and install
 
-1. Download **uncharted-windows.zip** from the [v1.0.0 release](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/releases/tag/1.0.0).
+1. Download **uncharted-windows.zip** from the [v1.0.1 release](https://github.com/ManoharPadul/uncharted_nathan_drake_collection_pc/releases/tag/1.0.1).
 2. Extract the full archive to a writable folder. Do not run the application from
    inside the ZIP.
 3. Open **Uncharted.exe**, choose the game dump on the Game page, and select U1,
@@ -105,13 +111,20 @@ caches; it may also contain save data. Updates should preserve user data.
   assertions are not confirmed fixed.
 - **Characters:** U3 raycaster synchronization is enabled by default, but sinking,
   floating and clipping still need scene-by-scene gameplay verification.
-- **Weapons and brightness:** small-result/material fixes are included, but black
-  weapons and all U3 brightness transitions are not confirmed fixed in every scene.
+- **Weapons and brightness:** the tested black-gun/material case is fixed by the
+  small-result path. Other scenes and all U3 brightness transitions still need checking.
 - **FSR4:** assets are bundled, but temporal shaking and the selected runtime path
   still need verification. Do not assume the option is stable.
+- **DLSS Frame Generation:** a recent test with DLSS Frame Generation enabled ended
+  in a GPU timeout/reset (LiveKernelEvent 141). Frame Generation is experimental;
+  turn it off if the driver reset or crash recurs. DLSS Super Resolution is a
+  separate path.
+- The latest texture A/B comparison no longer showed flicker after restoring the
+  texture-coherency paths. This was a focused test, not verification of every
+  scene or game.
+- DLSS-NR/“DLSS 5” and OptiScaler are not included in this build.
 - U1/U2 streaming crashes, U3 pub/gameplay crashes, cloth/hair defects, memory
   pressure and long-session stability remain under investigation.
-- DLSS/DLSS Frame Generation and Intel XeSS are not available in this package.
 
 A successful build, menu launch or focused test does not prove a complete
 playthrough or stable frame rate.
@@ -133,7 +146,7 @@ work from [SuperMedo's Uncharted PC port](https://github.com/Supermedo/uncharted
 and the contributors and dependencies credited in the source and release notices.
 Third-party components retain their own licenses. The runtime includes
 GPL-2.0-or-later code; preserve applicable notices and corresponding source when
-redistributing it. The matching source snapshot is attached to the v1.0.0 release.
+redistributing it. The matching source snapshot is attached to the v1.0.1 release.
 
 Uncharted and related names belong to their respective owners. This project is not
 affiliated with or endorsed by Sony Interactive Entertainment, Naughty Dog,
