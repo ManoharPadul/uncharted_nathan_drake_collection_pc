@@ -137,17 +137,6 @@ hardware, graphics settings and the complete log from that build. Keep the start
 executable/hash lines. Do not attach game binaries, keys, firmware or copyrighted
 game assets.
 
-## Credits and notices
-
-Custom launcher and integration by **Manohar Padul (Mindro)**. This project adapts
-work from [SuperMedo's Uncharted PC port](https://github.com/Supermedo/uncharted_pc),
-[shadPS4](https://github.com/shadps4-emu/shadPS4),
-[bc160201983's Uncharted port](https://github.com/bc160201983/Uncharted-The-Nathan-Drake-Collection-PC-port),
-and the contributors and dependencies credited in the source and release notices.
-Third-party components retain their own licenses. The runtime includes
-GPL-2.0-or-later code; preserve applicable notices and corresponding source when
-redistributing it. The matching source snapshot is attached to the v1.0.1 release.
-
 Uncharted and related names belong to their respective owners. This project is not
 affiliated with or endorsed by Sony Interactive Entertainment, Naughty Dog,
 Bluepoint Games or PlayStation.
