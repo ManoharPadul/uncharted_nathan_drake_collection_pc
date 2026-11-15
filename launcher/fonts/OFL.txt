@@ -1,0 +1,5 @@
+Cinzel by Natanael Gama (SIL Open Font License 1.1).
+https://fonts.google.com/specimen/Cinzel
+
+The in-game Uncharted wordmark is custom; Cinzel is bundled as the closest
+open substitute for headings and navigation in this launcher.

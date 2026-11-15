@@ -1,0 +1,30 @@
+out/
+__pycache__/
+user/
+*.mp4
+bbport.ini
+fsr4_shaders/
+# Profiles: only the merged one that release builds use is tracked.
+pgo/*
+!pgo/merged.profdata
+*.png
+last_run.log
+dist/
+packaging/runtime-paths.nix
+fsr4_411/
+vkd3d-proton.cache
+tools/fsr4cap/*.exe
+perf.data
+# Local leftovers: patch backups, generated SPIR-V, analysis outputs, test saves and routes
+*.orig
+/*.spv
+/1060/
+/docs/savedata_route/
+/docs/route*.txt
+/docs/route_run.log
+/bloodborne_upscalers_*.md
+mods.json
+patches.json
+!launcher/bloodborne.png
+# Official cover art: local only, never in the repository or a release
+launcher/art/
